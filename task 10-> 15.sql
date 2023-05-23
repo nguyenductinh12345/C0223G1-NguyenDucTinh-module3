@@ -9,7 +9,7 @@ use caseStudy;
  -- where exists (select * from loai_khach where loai_khach.ten_loai_khach = "diamond") and exists
  -- (select * from khach_hang where khach_hang.dia_chi in ("Vinh" or "Quảng Ngãi"));
  
-  select  dich_vu_di_kem.* , khach_hang.dia_chi
+ select  dich_vu_di_kem.* , khach_hang.dia_chi
  from dich_vu_di_kem
  join hop_dong_chi_tiet on hop_dong_chi_tiet.ma_dich_vu_di_kem = dich_vu_di_kem.ma_dich_vu_di_kem
  join hop_dong on hop_dong_chi_tiet.ma_hop_dong = hop_dong.ma_hop_dong
@@ -61,7 +61,6 @@ use caseStudy;
  join khach_hang kh on kh.ma_khach_hang = hd.ma_khach_hang
  group by (dvdk.ma_dich_vu_di_kem)
  having tong_so_lan_su_dung = 1;
-
 
 -- task 15
 

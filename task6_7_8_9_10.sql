@@ -20,17 +20,18 @@ join loai_dich_vu on loai_dich_vu.ma_loai_dich_vu = dich_vu.ma_loai_dich_vu
 join hop_dong on dich_vu.ma_dich_vu = hop_dong.ma_dich_vu
 where year(ngay_lam_hop_dong) = 2021);
 -- cach hay hơn
+
 select dich_vu.ma_dich_vu, dich_vu.ten_dich_vu, dich_vu.dien_tich,dich_vu.so_nguoi_toi_da, dich_vu.chi_phi_thue, loai_dich_vu.ten_loai_dich_vu
 from dich_vu
 join loai_dich_vu on loai_dich_vu.ma_loai_dich_vu = dich_vu.ma_loai_dich_vu
 join hop_dong on dich_vu.ma_dich_vu = hop_dong.ma_dich_vu
 where exists (select * from hop_dong
 where hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
-and year(ngay_lam_hop_dong) = 2020
-) and not exists(select * from hop_dong
+and year(ngay_lam_hop_dong) = 2020)
+and not exists(select * from hop_dong
 where hop_dong.ma_dich_vu = dich_vu.ma_dich_vu
-and year(ngay_lam_hop_dong) = 2021
-) group by dich_vu.ma_dich_vu;
+and year(ngay_lam_hop_dong) = 2021)
+group by dich_vu.ma_dich_vu;
 
 
 -- task 8
@@ -56,7 +57,7 @@ order by thang;
 -- task 10
 
 select hd.ma_hop_dong, hd.ngay_lam_hop_dong, hd.ngay_ket_thuc, hd.tien_dat_coc,
- ifnull(sum(hdct.so_luong), 0) as so_luong_dich_vu_di_kem
+ifnull(sum(hdct.so_luong), 0) as so_luong_dich_vu_di_kem
 from hop_dong hd
 left join hop_dong_chi_tiet hdct
 on hd.ma_hop_dong = hdct.ma_hop_dong
